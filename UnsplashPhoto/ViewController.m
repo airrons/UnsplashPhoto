@@ -21,6 +21,10 @@
     [[KMUnsplashRestFullManager shareInstance] requestPhotosWithPage:1 itemsPerPage:10 orderBy:KMPhotoOrderTypeLatest completion:^(NSArray *photoList, NSError *error) {
         
     }];
+    
+    [[KMUnsplashRestFullManager shareInstance] requestCuratedPhotosWithPage:1 perPage:10 orderBy:KMPhotoOrderTypeLatest completion:^(NSArray *photoList, NSError *error) {
+        
+    }];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

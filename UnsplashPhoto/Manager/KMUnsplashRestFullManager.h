@@ -26,4 +26,12 @@ typedef enum : NSUInteger {
  */
 - (void)requestPhotosWithPage:(NSInteger)page itemsPerPage:(NSInteger)perPage orderBy:(KMPhotoOrderType)orderType completion:(void(^)(NSArray * photoList,NSError * error))handler;
 
+/**
+ 请求精选照片列表。GET /photos/curated
+ @param page 页码
+ @parme perPage 每页返回量
+ @param orderType 排序类型,默认为最近
+ */
+- (void)requestCuratedPhotosWithPage:(NSInteger)page perPage:(NSInteger)perPage orderBy:(KMPhotoOrderType)orderType completion:(void(^)(NSArray * photoList,NSError * error))handler;
+
 @end
