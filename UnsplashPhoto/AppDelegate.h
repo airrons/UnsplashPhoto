@@ -1,0 +1,17 @@
+//
+//  AppDelegate.h
+//  UnsplashPhoto
+//
+//  Created by airron on 2018/7/17.
+//  Copyright © 2018年 王世坚. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
+
+
+@end
+
