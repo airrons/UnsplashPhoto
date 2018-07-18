@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/Coregraphics.h>
 
 typedef enum : NSUInteger {
     KMPhotoOrderTypeLatest = 0, //最新排序
@@ -33,5 +34,24 @@ typedef enum : NSUInteger {
  @param orderType 排序类型,默认为最近
  */
 - (void)requestCuratedPhotosWithPage:(NSInteger)page perPage:(NSInteger)perPage orderBy:(KMPhotoOrderType)orderType completion:(void(^)(NSArray * photoList,NSError * error))handler;
+
+/*
+ 请求单张照片的详细信息。GET /photos/:id
+ @param photoId The photo’s ID. Required.
+ @param width Image width in pixels.
+ @param height Image height in pixels.
+ @param rect 4 comma-separated integers representing x, y, width, height of the cropped rectangle.
+ */
+- (void)requestPhotoInfoWithPhotoId:(NSString *)photoId width:(CGFloat)width height:(CGFloat)height rect:(CGRect)rect completion:(void(^)(NSDictionary * result,NSError * error))handler;
+
+/*
+ 随机请求一组精选照片。GET /photos/random
+ */
+- (void)requestRandomPhotosWithCompletion:(void(^)(NSArray * photoList,NSError * error))handler;
+
+/*
+ 用户登陆获取相应权限
+ */
+- (void)loginWithCompletion:(void(^)(NSError * error))handler;
 
 @end

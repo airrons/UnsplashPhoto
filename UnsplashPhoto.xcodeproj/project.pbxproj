@@ -29,6 +29,7 @@
 		3755838320FE110C00D2DCEF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3755838B20FE126200D2DCEF /* KMUnsplashRestFullManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUnsplashRestFullManager.h; sourceTree = "<group>"; };
 		3755838C20FE126200D2DCEF /* KMUnsplashRestFullManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUnsplashRestFullManager.m; sourceTree = "<group>"; };
+		3E17575E20FF8BAE0027D6FC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4BF57D93FB6A70EF111AB7DD /* libPods-UnsplashPhoto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnsplashPhoto.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B0C428312072627F274E9F4 /* Pods-UnsplashPhoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashPhoto.release.xcconfig"; path = "Pods/Target Support Files/Pods-UnsplashPhoto/Pods-UnsplashPhoto.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +101,7 @@
 		D4B66507F7804E92AF745706 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E17575E20FF8BAE0027D6FC /* CoreGraphics.framework */,
 				4BF57D93FB6A70EF111AB7DD /* libPods-UnsplashPhoto.a */,
 			);
 			name = Frameworks;

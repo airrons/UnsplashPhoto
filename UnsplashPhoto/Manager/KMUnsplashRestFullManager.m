@@ -127,6 +127,131 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
     }];
 }
 
+/*
+ 请求单张照片的详细信息。GET /photos/:id
+ @param photoId The photo’s ID. Required.
+ @param width Image width in pixels.
+ @param height Image height in pixels.
+ @param rect 4 comma-separated integers representing x, y, width, height of the cropped rectangle.
+ */
+- (void)requestPhotoInfoWithPhotoId:(NSString *)photoId width:(CGFloat)width height:(CGFloat)height rect:(CGRect)rect completion:(void(^)(NSDictionary * result,NSError * error))handler{
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    manager.securityPolicy = [self getSecurityPolicy];
+    manager.requestSerializer = [self requestSerializer];
+    manager.responseSerializer = [self responseSerializer];
+    
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id", baseUrl];
+    NSDictionary * params = @{
+                              @"client_id" : accessKey,
+                              @"id": photoId,
+                              @"w" : @(width),
+                              @"h" : @(height),
+                              @"rect" : [NSString stringWithFormat:@"%f,%f,%f,%f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height]
+                              };
+    
+    [manager GET:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+/*
+ 随机请求一组精选照片。GET /photos/random
+ */
+- (void)requestRandomPhotosWithCompletion:(void(^)(NSArray * photoList,NSError * error))handler{
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    manager.securityPolicy = [self getSecurityPolicy];
+    manager.requestSerializer = [self requestSerializer];
+    manager.responseSerializer = [self responseSerializer];
+    
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/random", baseUrl];
+    NSDictionary * params = @{
+                              @"client_id" : accessKey,
+                              @"featured": @(YES),
+                              @"count" : @(30),
+                              };
+    
+    [manager GET:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+/*
+ 喜欢某张照片 POST /photos/:id/like
+ @param photoId The photo’s ID. Required.
+ */
+- (void)likePhotoWithPhotoId:(NSString *)photoId withCompletion:(void(^)(NSDictionary * result,NSError *error))handler{
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    manager.securityPolicy = [self getSecurityPolicy];
+    manager.requestSerializer = [self requestSerializer];
+    manager.responseSerializer = [self responseSerializer];
+    
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id/like", baseUrl];
+    NSDictionary * params = @{
+                              @"client_id" : accessKey,
+                              @"featured": @(YES),
+                              @"count" : @(30),
+                              };
+    
+    [manager POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+/*
+ 喜欢某张照片 DELETE /photos/:id/like
+ @param photoId The photo’s ID. Required.
+ */
+- (void)unlikePhotoWithPhotoId:(NSString *)photoId withCompletion:(void(^)(NSDictionary * result,NSError *error))handler{
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    manager.securityPolicy = [self getSecurityPolicy];
+    manager.requestSerializer = [self requestSerializer];
+    manager.responseSerializer = [self responseSerializer];
+    
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id/like", baseUrl];
+    NSDictionary * params = @{
+                              @"client_id" : accessKey,
+                              @"featured": @(YES),
+                              @"count" : @(30),
+                              };
+    [manager DELETE:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+/*
+ 用户登陆获取相应权限
+ */
+- (void)loginWithCompletion:(void(^)(NSError * error))handler{
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    manager.securityPolicy = [self getSecurityPolicy];
+    manager.requestSerializer = [self requestSerializer];
+    manager.responseSerializer = [self responseSerializer];
+    
+    NSString * URLString = @"https://unsplash.com/oauth/token";
+    NSDictionary * params = @{
+                              @"client_id" : accessKey,
+                              @"client_secret": accessSecret,
+                              };
+    
+    [manager POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
 
 - (AFSecurityPolicy *)getSecurityPolicy{
     //客户端不进行证书验证。
