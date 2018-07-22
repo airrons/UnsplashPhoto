@@ -9,16 +9,6 @@
 
 #import "KMUnsplashRestFullManager.h"
 
-#import <AFNetworking.h>
-
-/**
- BaseUrl
- */
-static NSString * baseUrl = @"https://api.unsplash.com/";
-
-static NSString * accessKey = @"3eb1d95f786289b6eb3a114820bf36601f629277eb476f3d9c0522adb7b22c7a";
-
-static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113cf60d613d6d26c4d961e";
 
 @implementation KMUnsplashRestFullManager
 
@@ -44,7 +34,7 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
  */
 - (void)requestPhotosWithPage:(NSInteger)page itemsPerPage:(NSInteger)perPage orderBy:(KMPhotoOrderType)orderType completion:(void(^)(NSArray * photoList,NSError * error))handler{
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kUnsplashAPIBaseUrl]];
     manager.securityPolicy = [self getSecurityPolicy];
     manager.requestSerializer = [self requestSerializer];
     manager.responseSerializer = [self responseSerializer];
@@ -63,18 +53,24 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
         default:
             break;
     }
-    NSString * URLString = [NSString stringWithFormat:@"%@photos", baseUrl];
+    NSString * URLString = [NSString stringWithFormat:@"%@photos", kUnsplashAPIBaseUrl];
     NSDictionary * params = @{
-                              @"client_id" : accessKey,
+                              @"client_id" : kUnsplashAccessKey,
                               @"page": @(page),
                               @"per_page" : @(perPage),
                               @"order_by" : orderBy
                               };
     
     [manager GET:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+//        NSLog(@"JSON: %@", responseObject);
+        if (handler) {
+            handler(responseObject,nil);
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
+        if (handler) {
+            handler(nil,error);
+        }
     }];
     
 //    [manager POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -93,7 +89,7 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
  */
 - (void)requestCuratedPhotosWithPage:(NSInteger)page perPage:(NSInteger)perPage orderBy:(KMPhotoOrderType)orderType completion:(void(^)(NSArray * photoList,NSError * error))handler{
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kUnsplashAPIBaseUrl]];
     manager.securityPolicy = [self getSecurityPolicy];
     manager.requestSerializer = [self requestSerializer];
     manager.responseSerializer = [self responseSerializer];
@@ -112,9 +108,9 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
         default:
             break;
     }
-    NSString * URLString = [NSString stringWithFormat:@"%@photos/curated", baseUrl];
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/curated", kUnsplashAPIBaseUrl];
     NSDictionary * params = @{
-                              @"client_id" : accessKey,
+                              @"client_id" : kUnsplashAccessKey,
                               @"page": @(page),
                               @"per_page" : @(perPage),
                               @"order_by" : orderBy
@@ -136,14 +132,14 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
  */
 - (void)requestPhotoInfoWithPhotoId:(NSString *)photoId width:(CGFloat)width height:(CGFloat)height rect:(CGRect)rect completion:(void(^)(NSDictionary * result,NSError * error))handler{
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kUnsplashAPIBaseUrl]];
     manager.securityPolicy = [self getSecurityPolicy];
     manager.requestSerializer = [self requestSerializer];
     manager.responseSerializer = [self responseSerializer];
     
-    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id", baseUrl];
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id", kUnsplashAPIBaseUrl];
     NSDictionary * params = @{
-                              @"client_id" : accessKey,
+                              @"client_id" : kUnsplashAccessKey,
                               @"id": photoId,
                               @"w" : @(width),
                               @"h" : @(height),
@@ -162,14 +158,14 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
  */
 - (void)requestRandomPhotosWithCompletion:(void(^)(NSArray * photoList,NSError * error))handler{
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kUnsplashAPIBaseUrl]];
     manager.securityPolicy = [self getSecurityPolicy];
     manager.requestSerializer = [self requestSerializer];
     manager.responseSerializer = [self responseSerializer];
     
-    NSString * URLString = [NSString stringWithFormat:@"%@photos/random", baseUrl];
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/random", kUnsplashAPIBaseUrl];
     NSDictionary * params = @{
-                              @"client_id" : accessKey,
+                              @"client_id" : kUnsplashAccessKey,
                               @"featured": @(YES),
                               @"count" : @(30),
                               };
@@ -187,14 +183,14 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
  */
 - (void)likePhotoWithPhotoId:(NSString *)photoId withCompletion:(void(^)(NSDictionary * result,NSError *error))handler{
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kUnsplashAPIBaseUrl]];
     manager.securityPolicy = [self getSecurityPolicy];
     manager.requestSerializer = [self requestSerializer];
     manager.responseSerializer = [self responseSerializer];
     
-    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id/like", baseUrl];
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id/like", kUnsplashAPIBaseUrl];
     NSDictionary * params = @{
-                              @"client_id" : accessKey,
+                              @"client_id" : kUnsplashAccessKey,
                               @"featured": @(YES),
                               @"count" : @(30),
                               };
@@ -212,14 +208,14 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
  */
 - (void)unlikePhotoWithPhotoId:(NSString *)photoId withCompletion:(void(^)(NSDictionary * result,NSError *error))handler{
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kUnsplashAPIBaseUrl]];
     manager.securityPolicy = [self getSecurityPolicy];
     manager.requestSerializer = [self requestSerializer];
     manager.responseSerializer = [self responseSerializer];
     
-    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id/like", baseUrl];
+    NSString * URLString = [NSString stringWithFormat:@"%@photos/:id/like", kUnsplashAPIBaseUrl];
     NSDictionary * params = @{
-                              @"client_id" : accessKey,
+                              @"client_id" : kUnsplashAccessKey,
                               @"featured": @(YES),
                               @"count" : @(30),
                               };
@@ -235,15 +231,15 @@ static NSString * accessSecret = @"f8efe7bcb8159b4e4094dc3b47536cc2a908b1338113c
  */
 - (void)loginWithCompletion:(void(^)(NSError * error))handler{
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kUnsplashAPIBaseUrl]];
     manager.securityPolicy = [self getSecurityPolicy];
     manager.requestSerializer = [self requestSerializer];
     manager.responseSerializer = [self responseSerializer];
     
     NSString * URLString = @"https://unsplash.com/oauth/token";
     NSDictionary * params = @{
-                              @"client_id" : accessKey,
-                              @"client_secret": accessSecret,
+                              @"client_id" : kUnsplashAccessKey,
+                              @"client_secret": kUnsplashAccessSecret,
                               };
     
     [manager POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

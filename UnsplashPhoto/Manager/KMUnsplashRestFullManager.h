@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreGraphics/Coregraphics.h>
 
 typedef enum : NSUInteger {
     KMPhotoOrderTypeLatest = 0, //最新排序

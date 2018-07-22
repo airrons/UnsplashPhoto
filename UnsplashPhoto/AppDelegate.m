@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 
+//Icon source : http://www.iconfont.cn/search/index?q=%E7%9B%B8%E6%9C%BA&page=1
+//AppICon is made by http://appiconmaker.co/Home/Index/3c4ec3b6-f777-4f92-9746-d8df796d1778
+
 @interface AppDelegate ()
 
 @end
@@ -25,8 +28,15 @@
     [self.window makeKeyAndVisible];
     
     ViewController * homeViewController = [[ViewController alloc] init];
-    self.window.rootViewController = homeViewController;
+    UINavigationController * navi = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+    self.window.rootViewController = navi;
     
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    
+    NSLog(@"%@",url);
     return YES;
 }
 

@@ -14,5 +14,6 @@ target 'UnsplashPhoto' do
   pod 'YYCategories'
   pod 'KSPhotoBrowser'
   pod 'KVOController'
+  pod 'MJRefresh'
 
 end

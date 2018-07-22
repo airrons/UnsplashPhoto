@@ -13,6 +13,15 @@
 		3755838120FE110C00D2DCEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3755837F20FE110C00D2DCEF /* LaunchScreen.storyboard */; };
 		3755838420FE110C00D2DCEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755838320FE110C00D2DCEF /* main.m */; };
 		3755838D20FE126300D2DCEF /* KMUnsplashRestFullManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755838C20FE126200D2DCEF /* KMUnsplashRestFullManager.m */; };
+		3E5E5FA521033D6C005FAF0B /* KMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5E5FA421033D6C005FAF0B /* KMWebViewController.m */; };
+		3E6D03D52100E43400F2F1FA /* KMPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6D03D32100E43400F2F1FA /* KMPhotoCollectionViewCell.m */; };
+		3E6D03D62100E43400F2F1FA /* KMPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6D03D42100E43400F2F1FA /* KMPhotoCollectionViewCell.xib */; };
+		3EC3C7A9210391DC00BFD4C3 /* KMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3C7A8210391DC00BFD4C3 /* KMPhoto.m */; };
+		3EC3C7AC2104272D00BFD4C3 /* KMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3C7AB2104272D00BFD4C3 /* KMUser.m */; };
+		3EC3C7AF21042B1800BFD4C3 /* kMPhotoCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3C7AE21042B1800BFD4C3 /* kMPhotoCollection.m */; };
+		3EC3C7B32104314400BFD4C3 /* UnsplashPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3C7B12104314400BFD4C3 /* UnsplashPhoto.xcdatamodeld */; };
+		3EC3C7B621043FF000BFD4C3 /* KMUnsplashDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3C7B521043FF000BFD4C3 /* KMUnsplashDataManager.m */; };
+		3EE5273F21034B70001635C6 /* KMUnsplashOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE5273E21034B70001635C6 /* KMUnsplashOAuthManager.m */; };
 		56A37732BF03DCEC8CAE2887 /* libPods-UnsplashPhoto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF57D93FB6A70EF111AB7DD /* libPods-UnsplashPhoto.a */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +39,24 @@
 		3755838B20FE126200D2DCEF /* KMUnsplashRestFullManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUnsplashRestFullManager.h; sourceTree = "<group>"; };
 		3755838C20FE126200D2DCEF /* KMUnsplashRestFullManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUnsplashRestFullManager.m; sourceTree = "<group>"; };
 		3E17575E20FF8BAE0027D6FC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3E5E5FA321033D6C005FAF0B /* KMWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMWebViewController.h; sourceTree = "<group>"; };
+		3E5E5FA421033D6C005FAF0B /* KMWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMWebViewController.m; sourceTree = "<group>"; };
+		3E5E5FA721033F0A005FAF0B /* UnsplashPhoto-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnsplashPhoto-Prefix.pch"; sourceTree = "<group>"; };
+		3E6D03D22100E43400F2F1FA /* KMPhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		3E6D03D32100E43400F2F1FA /* KMPhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		3E6D03D42100E43400F2F1FA /* KMPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KMPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		3EC3C7A7210391DC00BFD4C3 /* KMPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMPhoto.h; sourceTree = "<group>"; };
+		3EC3C7A8210391DC00BFD4C3 /* KMPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMPhoto.m; sourceTree = "<group>"; };
+		3EC3C7AA2104272D00BFD4C3 /* KMUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMUser.h; sourceTree = "<group>"; };
+		3EC3C7AB2104272D00BFD4C3 /* KMUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMUser.m; sourceTree = "<group>"; };
+		3EC3C7AD21042B1800BFD4C3 /* kMPhotoCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kMPhotoCollection.h; sourceTree = "<group>"; };
+		3EC3C7AE21042B1800BFD4C3 /* kMPhotoCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kMPhotoCollection.m; sourceTree = "<group>"; };
+		3EC3C7B22104314400BFD4C3 /* UnsplashPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UnsplashPhoto.xcdatamodel; sourceTree = "<group>"; };
+		3EC3C7B421043FF000BFD4C3 /* KMUnsplashDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMUnsplashDataManager.h; sourceTree = "<group>"; };
+		3EC3C7B521043FF000BFD4C3 /* KMUnsplashDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMUnsplashDataManager.m; sourceTree = "<group>"; };
+		3EE5273D21034B70001635C6 /* KMUnsplashOAuthManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMUnsplashOAuthManager.h; sourceTree = "<group>"; };
+		3EE5273E21034B70001635C6 /* KMUnsplashOAuthManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMUnsplashOAuthManager.m; sourceTree = "<group>"; };
+		3EE5274021034C14001635C6 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		4BF57D93FB6A70EF111AB7DD /* libPods-UnsplashPhoto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnsplashPhoto.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B0C428312072627F274E9F4 /* Pods-UnsplashPhoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashPhoto.release.xcconfig"; path = "Pods/Target Support Files/Pods-UnsplashPhoto/Pods-UnsplashPhoto.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +103,11 @@
 		3755837320FE10FF00D2DCEF /* UnsplashPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				3EC3C7B02104312A00BFD4C3 /* Resource */,
+				3EC3C7A6210391CB00BFD4C3 /* Model */,
+				3E5E5FA621033EA4005FAF0B /* Application */,
+				3E5E5FA221033D48005FAF0B /* ViewController */,
+				3E6D03D12100E40500F2F1FA /* View */,
 				3755838A20FE126200D2DCEF /* Manager */,
 				3755837420FE10FF00D2DCEF /* AppDelegate.h */,
 				3755837520FE10FF00D2DCEF /* AppDelegate.m */,
@@ -92,10 +124,63 @@
 		3755838A20FE126200D2DCEF /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				3EC3C7B421043FF000BFD4C3 /* KMUnsplashDataManager.h */,
+				3EC3C7B521043FF000BFD4C3 /* KMUnsplashDataManager.m */,
 				3755838B20FE126200D2DCEF /* KMUnsplashRestFullManager.h */,
 				3755838C20FE126200D2DCEF /* KMUnsplashRestFullManager.m */,
+				3EE5273D21034B70001635C6 /* KMUnsplashOAuthManager.h */,
+				3EE5273E21034B70001635C6 /* KMUnsplashOAuthManager.m */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		3E5E5FA221033D48005FAF0B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3E5E5FA321033D6C005FAF0B /* KMWebViewController.h */,
+				3E5E5FA421033D6C005FAF0B /* KMWebViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E5E5FA621033EA4005FAF0B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				3E5E5FA721033F0A005FAF0B /* UnsplashPhoto-Prefix.pch */,
+				3EE5274021034C14001635C6 /* macro.h */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		3E6D03D12100E40500F2F1FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E6D03D22100E43400F2F1FA /* KMPhotoCollectionViewCell.h */,
+				3E6D03D32100E43400F2F1FA /* KMPhotoCollectionViewCell.m */,
+				3E6D03D42100E43400F2F1FA /* KMPhotoCollectionViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3EC3C7A6210391CB00BFD4C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3EC3C7A7210391DC00BFD4C3 /* KMPhoto.h */,
+				3EC3C7A8210391DC00BFD4C3 /* KMPhoto.m */,
+				3EC3C7AA2104272D00BFD4C3 /* KMUser.h */,
+				3EC3C7AB2104272D00BFD4C3 /* KMUser.m */,
+				3EC3C7AD21042B1800BFD4C3 /* kMPhotoCollection.h */,
+				3EC3C7AE21042B1800BFD4C3 /* kMPhotoCollection.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3EC3C7B02104312A00BFD4C3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3EC3C7B12104314400BFD4C3 /* UnsplashPhoto.xcdatamodeld */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		D4B66507F7804E92AF745706 /* Frameworks */ = {
@@ -118,6 +203,7 @@
 				3755836D20FE10FF00D2DCEF /* Sources */,
 				3755836E20FE10FF00D2DCEF /* Frameworks */,
 				3755836F20FE10FF00D2DCEF /* Resources */,
+				D48DD40D8597304053EB433E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -165,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E6D03D62100E43400F2F1FA /* KMPhotoCollectionViewCell.xib in Resources */,
 				3755838120FE110C00D2DCEF /* LaunchScreen.storyboard in Resources */,
 				3755837E20FE110B00D2DCEF /* Assets.xcassets in Resources */,
 			);
@@ -191,6 +278,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D48DD40D8597304053EB433E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UnsplashPhoto/Pods-UnsplashPhoto-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UnsplashPhoto/Pods-UnsplashPhoto-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -199,8 +304,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3755838D20FE126300D2DCEF /* KMUnsplashRestFullManager.m in Sources */,
+				3E5E5FA521033D6C005FAF0B /* KMWebViewController.m in Sources */,
 				3755837920FE10FF00D2DCEF /* ViewController.m in Sources */,
 				3755838420FE110C00D2DCEF /* main.m in Sources */,
+				3EC3C7B32104314400BFD4C3 /* UnsplashPhoto.xcdatamodeld in Sources */,
+				3EC3C7B621043FF000BFD4C3 /* KMUnsplashDataManager.m in Sources */,
+				3EE5273F21034B70001635C6 /* KMUnsplashOAuthManager.m in Sources */,
+				3E6D03D52100E43400F2F1FA /* KMPhotoCollectionViewCell.m in Sources */,
+				3EC3C7A9210391DC00BFD4C3 /* KMPhoto.m in Sources */,
+				3EC3C7AC2104272D00BFD4C3 /* KMUser.m in Sources */,
+				3EC3C7AF21042B1800BFD4C3 /* kMPhotoCollection.m in Sources */,
 				3755837620FE10FF00D2DCEF /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +449,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Q8YV4XP8G;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/UnsplashPhoto/Application/UnsplashPhoto-Prefix.pch";
 				INFOPLIST_FILE = UnsplashPhoto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -355,6 +471,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Q8YV4XP8G;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/UnsplashPhoto/Application/UnsplashPhoto-Prefix.pch";
 				INFOPLIST_FILE = UnsplashPhoto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -389,6 +508,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3EC3C7B12104314400BFD4C3 /* UnsplashPhoto.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3EC3C7B22104314400BFD4C3 /* UnsplashPhoto.xcdatamodel */,
+			);
+			currentVersion = 3EC3C7B22104314400BFD4C3 /* UnsplashPhoto.xcdatamodel */;
+			path = UnsplashPhoto.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3755836920FE10FF00D2DCEF /* Project object */;
 }
