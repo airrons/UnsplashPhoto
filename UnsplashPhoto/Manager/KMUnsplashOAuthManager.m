@@ -61,8 +61,14 @@ static NSString * baseUrl = kUnsplashAPIBaseUrl;
     [manager POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"JSON: %@", responseObject);
         [self saveAccessToken:responseObject];
+        if (handler) {
+            handler(nil);
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
+        if (handler) {
+            handler(error);
+        }
     }];
 }
 
@@ -98,7 +104,7 @@ static NSString * baseUrl = kUnsplashAPIBaseUrl;
     
     void(^saveBlock)(void) = ^{
         NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:self.accessToken forKey:@"kAccessInfo"];
+        [userDefaults setObject:accessInfo forKey:@"kAccessInfo"];
         [userDefaults synchronize];
     };
     

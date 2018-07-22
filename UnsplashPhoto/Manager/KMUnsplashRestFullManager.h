@@ -48,6 +48,14 @@ typedef enum : NSUInteger {
  */
 - (void)requestRandomPhotosWithCompletion:(void(^)(NSArray * photoList,NSError * error))handler;
 
+
+/*
+ 喜欢某张照片 GET /collections
+ @param page Page Index.
+ @param perPage number of collections per page .
+ */
+- (void)requestPhotoCollectionsWithPage:(NSInteger)page perPage:(NSInteger)perPage withCompletion:(void(^)(NSArray * collectionList,NSError * error))handler;
+
 /*
  用户登陆获取相应权限
  */

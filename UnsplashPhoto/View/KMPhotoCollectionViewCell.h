@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KMPhotoCollectionViewCell : UICollectionViewCell
 
+@property(nonatomic,copy)void(^moreHandler)(NSInteger type,KMPhoto * photo);
+
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 
 @property(nonatomic,strong)KMPhoto * photo;

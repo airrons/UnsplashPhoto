@@ -38,7 +38,9 @@ API_AVAILABLE(ios(11.0))
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem * userBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登陆" style:UIBarButtonItemStylePlain target:self action:@selector(onOauthButtonClicked:)];
+    self.title = @"Unsplash";
+    
+    UIBarButtonItem * userBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"授权" style:UIBarButtonItemStylePlain target:self action:@selector(onOauthButtonClicked:)];
     self.navigationItem.leftBarButtonItem = userBarButtonItem;
     
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
@@ -94,20 +96,21 @@ API_AVAILABLE(ios(11.0))
     self.photosCollectionView.mj_footer.hidden = YES;
     [self.photosCollectionView.mj_header beginRefreshing];
 
-//    [[KMUnsplashRestFullManager shareInstance] requestPhotosWithPage:1 itemsPerPage:10 orderBy:KMPhotoOrderTypeLatest completion:^(NSArray *photoList, NSError *error) {
-//
-//    }];
-//
+    [[KMUnsplashRestFullManager shareInstance] requestPhotoCollectionsWithPage:0 perPage:1 withCompletion:^(NSArray *collectionList, NSError *error) {
+        
+    }];
+
 //    [[KMUnsplashRestFullManager shareInstance] requestCuratedPhotosWithPage:1 perPage:10 orderBy:KMPhotoOrderTypeLatest completion:^(NSArray *photoList, NSError *error) {
 //
 //    }];
     
-//    [[KMUnsplashRestFullManager shareInstance] loginWithCompletion:^(NSError *error) {
-//
-//    }];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+/*
+ 授权入口。部分接口须持有token才能够正常访问。 例如 点赞、取消点赞吗、添加照片到相册等。
+ 通过本入口可获得：accessToken,refreshToken 等重要令牌信息。
+ */
 - (void)onOauthButtonClicked:(id)sender{
     
     if (![KMUnsplashOAuthManager shareInstance].accessToken) {
@@ -130,13 +133,25 @@ API_AVAILABLE(ios(11.0))
                 NSString * code = [codeInfo lastObject];
                 NSLog(@"code : %@",code);
                 [[KMUnsplashOAuthManager shareInstance] requestAccessTokenWithOAuthCode:code WithCompletion:^(NSError *error) {
-                    
+                    if (!error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"应用已授权!可使用token信息进行点赞等高级操作！" preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                            [alertController addAction:okAction];
+                            [self presentViewController:alertController animated:YES completion:nil];
+                        });
+                    }
                 }];
             }];
             [_authSession start];
         } else {
             // Fallback on earlier versions
         }
+    }else{
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"用户已授权！可直接使用AccessToken进行与用户相关的操作!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
     
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:oauthURI]];
@@ -158,6 +173,10 @@ API_AVAILABLE(ios(11.0))
     KMPhotoCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"kUnsplashIdentifier" forIndexPath:indexPath];
     KMPhoto * photo = self.photoList[indexPath.row];
     cell.photo = photo;
+    __weak __typeof(self)weakSelf = self;
+    cell.moreHandler = ^(NSInteger type, KMPhoto * _Nonnull photo) {
+        [weakSelf onMoreHandlerWithType:type forPhoto:photo];
+    };
     return cell;
 }
 
@@ -183,6 +202,13 @@ API_AVAILABLE(ios(11.0))
     CGSize itemSize = CGSizeMake(itemWidth, itemHeight);
     
     return itemSize;
+}
+
+- (void)onMoreHandlerWithType:(NSInteger)type forPhoto:(KMPhoto *)photo{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"该操作后续补充!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -65,16 +65,22 @@
 }
 
 - (IBAction)onLikeButtonClicked:(id)sender {
-    
+    if (self.moreHandler) {
+        self.moreHandler(0, self.photo);
+    }
 }
 
 
 - (IBAction)onDownloadButtonClicked:(id)sender {
-    
+    if (self.moreHandler) {
+        self.moreHandler(1, self.photo);
+    }
 }
 
 - (IBAction)onCollectionButtonClicked:(id)sender {
-    
+    if (self.moreHandler) {
+        self.moreHandler(2, self.photo);
+    }
 }
 
 @end

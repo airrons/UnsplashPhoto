@@ -72,12 +72,6 @@
             handler(nil,error);
         }
     }];
-    
-//    [manager POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"JSON: %@", responseObject);
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"Error: %@", error);
-//    }];
 }
 
 
@@ -246,6 +240,38 @@
         NSLog(@"JSON: %@", responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
+    }];
+}
+
+/*
+ 喜欢某张照片 GET /collections
+ @param page Page Index.
+ @param perPage number of collections per page .
+ */
+- (void)requestPhotoCollectionsWithPage:(NSInteger)page perPage:(NSInteger)perPage withCompletion:(void(^)(NSArray * collectionList,NSError * error))handler{
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kUnsplashAPIBaseUrl]];
+    manager.securityPolicy = [self getSecurityPolicy];
+    manager.requestSerializer = [self requestSerializer];
+    manager.responseSerializer = [self responseSerializer];
+    
+    NSString * URLString = [NSString stringWithFormat:@"%@collections", kUnsplashAPIBaseUrl];
+    NSDictionary * params = @{
+                              @"client_id" : kUnsplashAccessKey,
+                              @"page": @(page),
+                              @"per_page" : @(perPage)
+                              };
+    
+    [manager GET:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        if (handler) {
+            handler(responseObject,nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+        if (handler) {
+            handler(nil,error);
+        }
     }];
 }
 
