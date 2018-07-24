@@ -96,7 +96,7 @@ API_AVAILABLE(ios(11.0))
     self.photosCollectionView.mj_footer.hidden = YES;
     [self.photosCollectionView.mj_header beginRefreshing];
 
-    [[KMUnsplashRestFullManager shareInstance] requestPhotoCollectionsWithPage:0 perPage:1 withCompletion:^(NSArray *collectionList, NSError *error) {
+    [[KMUnsplashDataManager shareInstance] requestPhotoCollectionsWithPage:0 perPage:1 withCompletion:^(NSArray *collectionList, NSError *error) {
         
     }];
 
@@ -153,13 +153,6 @@ API_AVAILABLE(ios(11.0))
         [alertController addAction:okAction];
         [self presentViewController:alertController animated:YES completion:nil];
     }
-    
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:oauthURI]];
-    
-//    KMWebViewController * webViewController = [[KMWebViewController alloc] init];
-//    webViewController.title = @"授权";
-//    UINavigationController * navi = [[UINavigationController alloc] initWithRootViewController:webViewController];
-//    [self presentViewController:navi animated:YES completion:nil];
 }
 
 #pragma mark =========================== UICollectionDelegate DataSource =======================================
@@ -183,14 +176,9 @@ API_AVAILABLE(ios(11.0))
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     KMPhotoCollectionViewCell * cell = (KMPhotoCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    NSMutableArray * photoItems = [NSMutableArray arrayWithCapacity:0];
-    for (KMPhoto * photo in self.photoList) {
-        NSString * regularImageUrl = photo.fullImage;
-        KSPhotoItem * photoItem = [KSPhotoItem itemWithSourceView:cell.photoImageView imageUrl:[NSURL URLWithString:regularImageUrl]];
-        [photoItems addObject:photoItem];
-    }
-    
-    KSPhotoBrowser *browser = [KSPhotoBrowser browserWithPhotoItems:photoItems selectedIndex:indexPath.row];
+    KMPhoto * photo = self.photoList[indexPath.row];
+    KSPhotoItem * photoItem = [KSPhotoItem itemWithSourceView:cell.photoImageView imageUrl:[NSURL URLWithString:photo.regularImage]];
+    KSPhotoBrowser *browser = [KSPhotoBrowser browserWithPhotoItems:@[photoItem] selectedIndex:0];
     [browser showFromViewController:self];
 }
 

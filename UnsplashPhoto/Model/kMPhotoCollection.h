@@ -32,4 +32,12 @@
 
 @property(nonatomic,strong)NSDate * updatedDate;
 
+@property(nonatomic,strong)KMPhoto * coverPhoto;
+
+@property(nonatomic,strong)NSMutableArray * previewPhotos;
+
+@property(nonatomic,strong)KMUser * user;
+
++ (kMPhotoCollection *)instanceWithCollectionInfo:(NSDictionary *)collectionInfo;
+
 @end

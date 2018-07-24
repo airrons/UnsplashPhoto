@@ -55,7 +55,51 @@
     }];
 }
 
-
+/*
+ 喜欢某张照片 GET /collections
+ @param page Page Index.
+ @param perPage number of collections per page .
+ */
+- (void)requestPhotoCollectionsWithPage:(NSInteger)page perPage:(NSInteger)perPage withCompletion:(void(^)(NSArray * collectionList,NSError * error))handler{
+    
+    [[KMUnsplashRestFullManager shareInstance] requestPhotoCollectionsWithPage:page perPage:perPage withCompletion:^(NSArray *collectionList, NSError *error) {
+        if (!error && collectionList) {
+            
+            NSMutableArray * collections = [NSMutableArray arrayWithCapacity:0];
+            for (NSDictionary * collectionInfo in collectionList) {
+                NSDictionary * coverPhotoInfo = [collectionInfo objectForKey:@"cover_photo"];
+                KMPhoto * coverPhoto = [KMPhoto instanceWithPhotoInfo:coverPhotoInfo];
+                NSDictionary * coverPhotoUserInfo = [coverPhotoInfo objectForKey:@"user"];
+                KMUser * coverPhotoUser = [KMUser instanceWithUserInfo:coverPhotoUserInfo];
+                coverPhoto.user = coverPhotoUser;
+                NSArray * preViewPhotoArray = [collectionInfo objectForKey:@"preview_photos"];
+                NSMutableArray * preViewPhotosList = [NSMutableArray arrayWithCapacity:0];
+                for (NSDictionary * preViewPhotoInfo in preViewPhotoArray) {
+                    KMPhoto * preViewPhoto = [KMPhoto instanceWithPhotoInfo:preViewPhotoInfo];
+                    [preViewPhotosList addObject:preViewPhoto];
+                }
+                
+                NSDictionary * createUserInfo = [collectionInfo objectForKey:@"user"];
+                KMUser * createUser = [KMUser instanceWithUserInfo:createUserInfo];
+                
+                kMPhotoCollection * photoCollection = [kMPhotoCollection instanceWithCollectionInfo:collectionInfo];
+                photoCollection.coverPhoto = coverPhoto;
+                photoCollection.previewPhotos = preViewPhotosList;
+                photoCollection.user = createUser;
+                
+                [collections addObject:photoCollection];
+            }
+            
+            if (handler) {
+                handler(collections,nil);
+            }
+        }else{
+            if (handler) {
+                handler(nil,error);
+            }
+        }
+    }];
+}
 
 
 
